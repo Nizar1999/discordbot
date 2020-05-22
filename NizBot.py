@@ -235,7 +235,7 @@ async def dc(message):
             voice = None
             return """ ``` Disconnected. ``` """
         else:
-            return """ ``` Im not even connected dickwad ``` """
+            return """ ``` Im not even connected ``` """
     except Exception as error:
         print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
