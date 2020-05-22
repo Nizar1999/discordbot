@@ -17,7 +17,7 @@ helpMessage = """
 ```
 """.format(prefix)
 
-nizbotDataFolder = "C:/Users/b1t/Desktop/NizBotData"
+nizbotDataFolder = "dirlocationhere"
 
 commands = ["help", "create", "add", "delete", "remove", "play", "dc", "skip", "queue", "prefix"]
 voice = None
@@ -130,7 +130,7 @@ async def playPlaylist(message, serverId):
             
         return """ ``` Playing playlist.. ``` """
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
     
 
@@ -167,7 +167,7 @@ def createPlaylist(message, serverId):
         
         return """ ``` Playlist created.\n Use {0}play {1} to play it.``` """.format(prefix, playlistName)
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
     
 async def addSong(message, serverId, channel):
@@ -220,7 +220,7 @@ async def addSong(message, serverId, channel):
             
         return """ ``` Song added. ``` """
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
 
 
@@ -237,7 +237,7 @@ async def dc(message):
         else:
             return """ ``` Im not even connected dickwad ``` """
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
 
 def deletePlaylist(message, serverId):
@@ -270,27 +270,27 @@ def deletePlaylist(message, serverId):
         else:
             return """ ``` Playlist doesn't exist.``` """
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)   
 
 def removeSong():
     try:
-        return """ ``` Delete playlist or contact niz for manual deletion. Can't be assed to implement this feature lul``` """
+        return """ ``` Delete playlist or contact niz for manual deletion.``` """
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)   
     
 def mentionProtocol(x):
     try:
         return {
-            1: """ ``` The lord has been mentioned. Praise be unto him.``` """,
-            2: """ ``` Whoms't speaketh my woman's name, face my wrath.``` """,
-            3: """ ``` fagusta, you've been summoned``` """,
-            4: """ ``` HENTAAAAAAAAAAAAAAAAAAAAI UWU ONIIIICHAAAAAAAAAAAN :3``` """,
-            5: """ ``` Too busy streaming stonks. twitch.tv/therealatab``` """,
+            1: """ ``` message here``` """,
+            2: """ ``` message here``` """,
+            3: """ ``` message here``` """,
+            4: """ ``` message here``` """,
+            5: """ ``` message here``` """,
         }[x]
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
 
 def skipSong():
@@ -303,7 +303,7 @@ def skipSong():
         else:
             raise Error("No song is playing")
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
 
 
@@ -340,7 +340,7 @@ def queue():
         else:
             raise Error("Queue is empty")
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
 
 def skipSong():
@@ -351,7 +351,7 @@ def skipSong():
             voice.stop()
         return """ ``` Song Skipped ``` """
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
 
 
@@ -367,10 +367,11 @@ def changePrefix(message):
         prefix = newPrefix
         return """ ``` Prefix changed to {0} ``` """.format(prefix)
     except Exception as error:
-        print("Retardation occured:", error)
+        print("error occured:", error)
         return """ ``` {0} ``` """.format(error)
 
 
+    #send apu pics every now and then
 async def sendApu(general):
     import random
     global nizbotDataFolder
@@ -392,7 +393,7 @@ loop = asyncio.get_event_loop()
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="handshake guides at twitch.tv/therealatab"))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="handshake guides at twitch.tv/trainwreckstv"))
     generals = list()
     for guild in client.guilds:
         for channel in guild.text_channels:
@@ -439,30 +440,30 @@ async def on_message(message):
         await message.channel.send(await dc(message)) #dc command
 
     import re
-    if (re.search('^(nig)|(neg)', message.content) != None):
-        await message.channel.send('<:cmonBruh:701544574245404702>') #dc command
+    if (re.search('^(ha)|(hat)', message.content) != None):
+        await message.channel.send('<:cmonBruh:serverid>') #emote reply
 
-    niz = client.get_user(349716227532259328)
+    niz = client.get_user(userid)
     if niz.mentioned_in(message):
         await message.channel.send(mentionProtocol(1)) 
 
-    mich = client.get_user(239535720010612756)
-    if mich.mentioned_in(message) and (message.author.id == 349716227532259328):
+    mich = client.get_user(userid)
+    if mich.mentioned_in(message) and (message.author.id == userid):
         await message.channel.send(mentionProtocol(2)) 
 
-    rayan = client.get_user(402763043651584001)
+    rayan = client.get_user(userid)
     if rayan.mentioned_in(message):
         await message.channel.send(mentionProtocol(3))
 
-    if(message.author.id == 402763043651584001 and message.content == "kekkers"):
-        await message.channel.send(":joy::joy: ntek")
+    if(message.author.id == userid and message.content == "kekkers"):
+        await message.channel.send(":joy::joy:")
 
-    pat = client.get_user(297439775151882241)
+    pat = client.get_user(userid)
     if pat.mentioned_in(message):
         await message.channel.send(mentionProtocol(4))
 
-    tony = client.get_user(268086365122592779)
+    tony = client.get_user(userid)
     if tony.mentioned_in(message):
         await message.channel.send(mentionProtocol(5))
 
-client.run('NzAxMTAwMjA0MTQ0NzIxOTY5.Xpskxg.CZ5VLlHcMdMphFDAnTC7Em7CBro')
+client.run('tokenhere')
